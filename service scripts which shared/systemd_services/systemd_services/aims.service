@@ -1,0 +1,17 @@
+[Unit]
+Description=AIMS
+After=aims_repository.service
+Requires=aims_repository.service
+
+[Service]
+Type=forking
+User=samesl
+ExecStartPre=/bin/bash -a -c "source /home/samesl/aims/env/env.sh && /home/samesl/aims/script/config_aims.sh"
+ExecStart=/bin/bash -a -c "source /home/samesl/aims/env/env.sh && /home/samesl/aims/util/was/apache-tomcat-8.5.34/bin/catalina.sh start"
+ExecStop=/bin/bash -a -c "source /home/samesl/aims/env/env.sh && /home/samesl/aims/util/was/apache-tomcat-8.5.34/bin/catalina.sh stop"
+Restart=always
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target
+

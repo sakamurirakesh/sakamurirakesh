@@ -1,0 +1,17 @@
+[Unit]
+Description=AIMS
+After=aims_repository.service
+Requires=aims_repository.service
+
+[Service]
+Type=forking
+User=samesl
+ExecStart=/bin/bash -a -c "source /home/samesl/aims/env/env.sh && /home/samesl/aims/startup.sh"
+ExecStop=/bin/bash -a -c "source /home/samesl/aims/env/env.sh && /home/samesl/aims/shutdown.sh"
+ExcStartPost=/bin/sleep 60
+Restart=always
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target
+

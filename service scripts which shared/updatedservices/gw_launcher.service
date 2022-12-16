@@ -1,0 +1,13 @@
+[Unit]
+Description=Solum Gateway Launcher
+
+[Service]
+Type=forking
+User=samesl
+ExecStart=/bin/bash -a -c "/home/samesl/aims/gateway_launcher/startup_gatewaylauncher.sh"
+ExecStop=/bin/bash -a -c "/home/samesl/aims/gateway_launcher/shutdown.sh"
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+

@@ -1,0 +1,15 @@
+[Unit]
+Description=AIMS Rewe Interface
+After=aims.service
+Requires=aims.service
+
+[Service]
+Type=simple
+User=samesl
+ExecStartPre=/bin/bash -a -c "source /home/samesl/aims/env/env.sh && /home/samesl/aims/script/config_aims.sh"
+WorkingDirectory=/home/samesl/aims/interface
+ExecStart=/bin/bash -a -c "source /home/samesl/aims/env/env.sh && /home/samesl/aims/interface/reweapi"
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

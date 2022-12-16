@@ -1,0 +1,16 @@
+[Unit]
+Description=AIMS Postgres DB
+BindsTo=aims.service
+
+[Service]
+Type=forking
+User=samesl
+ExecStart=/bin/bash -a -c "source /home/samesl/aims/env/env.sh && /home/samesl/aims/script/aims_repository_start.sh"
+ExecStop=/bin/bash -a -c "source /home/samesl/aims/env/env.sh && /home/samesl/aims/script/aims_repository_stop.sh"
+ExecStartPost=/bin/sleep 30
+Restart=always
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target
+
